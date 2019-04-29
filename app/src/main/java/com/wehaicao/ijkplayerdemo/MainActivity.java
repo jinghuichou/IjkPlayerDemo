@@ -106,7 +106,8 @@ public class MainActivity extends AppCompatActivity implements VideoListener {
      */
     private void initPlayer() {
         player.setVideoListener(this);
-        player.setPath("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+//        player.setPath("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+        player.setPath("https://media.w3.org/2010/05/sintel/trailer.mp4");
         try {
             player.load();
         } catch (IOException e) {
@@ -204,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements VideoListener {
     }
 
     private void setMoveVolume() {
-        if (!portrait) {
+        if (!portrait && Math.abs(startY - endY) > Math.abs(startX - endX)) {
             if (startX > screenHalfWidth && 50 < startY - endY) {
                 progressVolume.setVisibility(View.VISIBLE);
                 int dis = (int) ((startY - endY) / 10);
@@ -223,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements VideoListener {
 
 
     private void setMoveProgress() {
-        if (Math.abs(endX - startX) > 100 && 50 < Math.abs(startY - endY)) {
+        if (Math.abs(endX - startX) > Math.abs(startY - endY) && Math.abs(endX - startY) > 100 ) {
             // 快进
             int second = (int) (Math.abs(endX - startX) / 50);
             if (endX > startX) {
@@ -236,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements VideoListener {
     }
 
     private void setMoveTime() {
-        if (Math.abs(endX - startX) > 100 && 50 < Math.abs(startY - endY)) {
+        if (Math.abs(endX - startX) > Math.abs(startY - endY) && Math.abs(endX - startY) > 100) {
             tvPreTime.setVisibility(View.VISIBLE);
             // 计算快进快退多少秒
             int second = (int) (Math.abs(endX - startX) / 50) * 1000;
@@ -255,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements VideoListener {
     }
 
     private void setMoveLight() {
-        if (!portrait) {
+        if (!portrait && Math.abs(startY - endY) > Math.abs(startX - endX)) {
             if (startX < screenHalfWidth && 50 < startY - endY) {
                 progressLight.setVisibility(View.VISIBLE);
                 int dis = (int) ((startY - endY) / 10);
@@ -690,7 +691,7 @@ public class MainActivity extends AppCompatActivity implements VideoListener {
                 sensor_flag = true;
             }
             if (stretch_flag == sensor_flag) {  //点击变成横屏  屏幕 也转横屏 激活
-                System.out.println("激活");
+//                System.out.println("激活");
                 sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_UI);
             }
         }
