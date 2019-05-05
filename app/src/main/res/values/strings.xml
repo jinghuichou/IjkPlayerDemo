@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">IjkPlayerDemo</string>
+    <string name="player_video">播放视频</string>
+    <string name="live">直播</string>
 </resources>

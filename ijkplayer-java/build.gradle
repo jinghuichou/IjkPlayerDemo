@@ -1,0 +1,27 @@
+apply plugin: 'com.android.library'
+
+android {
+    // http://tools.android.com/tech-docs/new-build-system/tips
+    //noinspection GroovyAssignabilityCheck
+    compileSdkVersion 28
+
+    lintOptions {
+        abortOnError false
+    }
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 28
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+}
+
+apply from: new File(rootProject.projectDir, "gradle-on-demand.gradle");
